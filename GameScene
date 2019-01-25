@@ -1,0 +1,26 @@
+
+	private Runnable autosaveTask = () -> {
+		log.trace("Start autosave");
+		try {
+			autoSaveFileManager.save(GameArea.getInstance());
+		} catch (FileWriteErrorException e) {
+			log.error("Autosave: File couldn't be saved");
+			e.printStackTrace();
+		}
+		log.trace("End autosave");
+
+		// updateMessage(new SimpleDateFormat("HH:mm:ss").format(new
+		// Date()) + " - Stored data automatically");
+	};
+
+	public GameScene() {
+		super(BorderPane.class, "game-area.fxml", title);
+	}
+
+	@Override
+	public void onSceneShowing() {
+		initGameArea();
+		getSceneManager().resizeMainWindow();
+		App.startExecutor(autosaveTask);
+		log.info("Start autosave thread");
+	}
