@@ -1,5 +1,5 @@
 # Thread Beispielimplementierung 
 
-Beispiel Code kein fertiges Projekt !
+Code-Beispiele / Snippet - kein fertiges Projekt !
 
 
